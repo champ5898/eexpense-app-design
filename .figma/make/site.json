@@ -1,1 +1,10 @@
-{}
+{
+  "description": "Track expenses, organize spending, and monitor budgets with a polished tool that helps individuals manage their finances and make informed decisions.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
