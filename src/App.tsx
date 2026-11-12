@@ -1,4 +1,4 @@
-import { FormEvent, ReactNode, useMemo, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useMemo, useState } from "react";
 
 type IconName =
   | "home"
@@ -14,6 +14,8 @@ type IconName =
   | "search"
   | "bell"
   | "eye"
+  | "moon"
+  | "sun"
   | "close"
   | "coffee"
   | "cart"
@@ -90,6 +92,13 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
       <circle cx="12" cy="12" r="2.5" />
+    </>
+  ),
+  moon: <path d="M20.5 14.2A8.2 8.2 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" />,
+  sun: (
+    <>
+      <circle cx="12" cy="12" r="3.5" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
     </>
   ),
   close: <path d="m6 6 12 12M18 6 6 18" />,
@@ -192,6 +201,9 @@ export default function App() {
   const [active, setActive] = useState("Overview");
   const [month, setMonth] = useState(1);
   const [visible, setVisible] = useState(true);
+  const [darkMode, setDarkMode] = useState(
+    () => window.localStorage.getItem("clarity-theme") === "dark",
+  );
   const [modal, setModal] = useState(false);
   const [toast, setToast] = useState("");
   const [transactions, setTransactions] = useState(initialTransactions);
@@ -200,6 +212,11 @@ export default function App() {
     () => transactions.reduce((sum, item) => sum + item.amount, 0),
     [transactions],
   );
+
+  useEffect(() => {
+    window.localStorage.setItem("clarity-theme", darkMode ? "dark" : "light");
+    document.documentElement.style.colorScheme = darkMode ? "dark" : "light";
+  }, [darkMode]);
 
   function addExpense(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -224,7 +241,7 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell${darkMode ? " dark-theme" : ""}`}>
       <aside className="sidebar">
         <div className="brand">
           <span className="brand-mark">
@@ -278,6 +295,14 @@ export default function App() {
           <div className="top-actions">
             <button className="icon-btn" aria-label="Search">
               <Icon name="search" />
+            </button>
+            <button
+              className="icon-btn theme-toggle"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              <Icon name={darkMode ? "sun" : "moon"} />
             </button>
             <button className="icon-btn notification" aria-label="Notifications">
               <Icon name="bell" />

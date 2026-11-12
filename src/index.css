@@ -40,6 +40,10 @@
 
 .app-shell {
   min-height: 100vh;
+  background: var(--canvas);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 .sidebar {
   position: fixed;
@@ -858,6 +862,136 @@ main {
   animation: modalIn 0.2s ease-out;
 }
 
+.dark-theme {
+  --ink: #e8efeb;
+  --muted: #8f9d96;
+  --line: #283730;
+  --green: #56c69a;
+  --green-dark: #42ad84;
+  --canvas: #101612;
+  color: var(--ink);
+}
+.dark-theme .sidebar {
+  background: #151d18;
+}
+.dark-theme .topbar,
+.dark-theme .stat-card,
+.dark-theme .panel,
+.dark-theme .month-switcher,
+.dark-theme .select-button,
+.dark-theme .icon-btn,
+.dark-theme .expense-modal {
+  background: #18211c;
+  border-color: var(--line);
+  box-shadow: 0 4px 18px #0000001f;
+}
+.dark-theme .nav-item {
+  color: #95a19b;
+}
+.dark-theme .nav-item:hover,
+.dark-theme .nav-item.active {
+  color: #66d3a8;
+  background: #1f342a;
+}
+.dark-theme .privacy-card {
+  background: #1b2a23;
+  border-color: #2b4036;
+}
+.dark-theme .privacy-icon,
+.dark-theme .avatar {
+  color: #68d3aa;
+  background: #243b31;
+}
+.dark-theme .privacy-card p,
+.dark-theme .profile span,
+.dark-theme .stat-top,
+.dark-theme .panel-head p,
+.dark-theme .transaction-name span,
+.dark-theme .legend span {
+  color: #8f9d96;
+}
+.dark-theme .icon-btn,
+.dark-theme .month-switcher button,
+.dark-theme .select-button {
+  color: #abb6b0;
+}
+.dark-theme .icon-btn:hover {
+  color: #6dd6ad;
+  border-color: #3b584a;
+}
+.dark-theme .theme-toggle {
+  color: #e6bd68;
+  background: #29271d;
+  border-color: #443d28;
+}
+.dark-theme .balance-card {
+  color: #fff;
+  border-color: #26795c;
+  background: linear-gradient(135deg, #17664d, #114333);
+}
+.dark-theme .stat-icon.income,
+.dark-theme .transaction-icon.mint,
+.dark-theme .trend.positive span {
+  color: #70d8af;
+  background: #203b30;
+}
+.dark-theme .stat-icon.expense,
+.dark-theme .transaction-icon.peach,
+.dark-theme .trend.negative span {
+  color: #ef997d;
+  background: #3a2924;
+}
+.dark-theme .stat-icon.saving,
+.dark-theme .transaction-icon.blue {
+  color: #94a9f0;
+  background: #282f47;
+}
+.dark-theme .transaction-icon.purple {
+  color: #c2a1ea;
+  background: #332940;
+}
+.dark-theme .area-chart .grid-line {
+  stroke: #2b3932;
+}
+.dark-theme .area-chart .line {
+  stroke: #59c99c;
+}
+.dark-theme .area-chart circle {
+  fill: #18211c;
+  stroke: #59c99c;
+}
+.dark-theme .donut {
+  background: conic-gradient(#56c69a 0 58%, #293630 58% 100%);
+}
+.dark-theme .donut:before,
+.dark-theme .category-donut div {
+  background: #18211c;
+}
+.dark-theme .progress {
+  background: #293630;
+}
+.dark-theme .donut-row,
+.dark-theme .transaction,
+.dark-theme .profile {
+  border-color: var(--line);
+}
+.dark-theme .expense-modal label {
+  color: #a1ada7;
+}
+.dark-theme .expense-modal input,
+.dark-theme .expense-modal select {
+  color: var(--ink);
+  background: #111914;
+  border-color: #33443b;
+}
+.dark-theme .expense-modal input::placeholder {
+  color: #64716b;
+}
+.dark-theme .toast {
+  color: #13231c;
+  background: #7adbb5;
+}
+
 @media (max-width: 1050px) {
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -939,6 +1073,9 @@ main {
     background: #fffffff2;
     border-top: 1px solid var(--line);
     backdrop-filter: blur(12px);
+  }
+  .dark-theme .mobile-nav {
+    background: #151d18f2;
   }
   .mobile-nav button {
     display: flex;
